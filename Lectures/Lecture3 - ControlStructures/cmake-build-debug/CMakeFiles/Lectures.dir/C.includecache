@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Lectures/Lecture3 - ControlStructures/letters.c
+stdio.h
+-
+stdint.h
+-
+ctype.h
+-
+
