@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project3 - String ADT/String.h
+stdint.h
+-
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project3 - String ADT/main.cpp
+stdio.h
+-
+string.h
+-
+String.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project3 - String ADT/String.h
+stdlib.h
+-
+

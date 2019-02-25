@@ -1,0 +1,20 @@
+	/*UTString *new_s = (UTString*)malloc(sizeof(UTString));
+
+
+	if(new_capacity <= s->capacity)
+    		return s;
+        char* temp;
+    	s->capacity = new_capacity;
+    	s->string = (char*)realloc(s->string,new_capacity);
+    	return s;
+
+    	UTString *new_s = (UTString*)malloc(sizeof(UTString));
+            new_s->length = s-> length;
+            new_s->capacity = new_capacity;
+            new_s->string = (char*)malloc((new_s->capacity+5)*sizeof(char));
+
+            for(int32_t i =0;i<=s->length;i++)
+            {
+                new_s->string[i] = s->string[i];
+            }
+            utstrfree(s);
