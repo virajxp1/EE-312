@@ -4,7 +4,7 @@
 #include <stdio.h> // declaraations of standard input/output functions
 #include <stdint.h> // declarations of standard integer types (e.g., int32_t)
 #include <stdlib.h> // declarations of general functions in the standard library (e.g., abort, exit)
-
+#include "Project1.cpp"
 
 #define ONE_MB (1 << 20)
 #define BUFFER_SIZE ONE_MB
