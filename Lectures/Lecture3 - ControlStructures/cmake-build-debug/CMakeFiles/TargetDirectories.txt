@@ -1,3 +1,0 @@
-C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Lectures/Lecture3 - ControlStructures/cmake-build-debug/CMakeFiles/Lectures.dir
-C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Lectures/Lecture3 - ControlStructures/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Lectures/Lecture3 - ControlStructures/cmake-build-debug/CMakeFiles/rebuild_cache.dir
