@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project4 - CRM/Project4_starter_files/Invent.h
+MyString.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project4 - CRM/Project4_starter_files/MyString.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project4 - CRM/Project4_starter_files/MyString.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project4 - CRM/Project4_starter_files/main.cpp
+stdio.h
+-
+stdlib.h
+-
+MyString.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project4 - CRM/Project4_starter_files/MyString.h
+Invent.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE312/Projects/Project4 - CRM/Project4_starter_files/Invent.h
+

@@ -1,0 +1,36 @@
+Inventory Bottles 0
+Inventory Diapers 0
+Inventory Rattles 0
+
+Summarize 
+
+Inventory Bottles 40
+
+Purchase "" Bottles 9
+Purchase Jon Bottles 0
+Purchase Jon Bottles -5
+Purchase Jon Bottles 10000
+Purchase "" Bottles 32 
+
+Summarize
+
+Inventory Bottles -50
+Inventory Diapers -50
+Inventory Rattles -50
+Purchase Jon Bottles 9
+
+Summarize 
+Quit 
+
+Inventory 0,0,0
+0 customers 
+//////
+"" bought 9
+Jon shouldnt be added so only 1 customers
+////
+Inventory updated 22 , 0,0
+"" should have most buys 
+
+
+
+
