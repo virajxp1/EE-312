@@ -62,20 +62,24 @@ int main(void) {
 	quit = StringCreate("Quit");
 
 
-    /*readInput("C:\\Users\\viraj\\Documents\\College\\Freshman\\Spring 2019\\EE 312\\EE312\\Projects\\Project4 - CRM\\Project4_starter_files\\test5.txt");
+    /*readInput("C:\\Users\\viraj\\Documents\\College\\Freshman\\Spring 2019\\EE 312\\EE312\\Projects\\Project4 - CRM\\Project4_starter_files\\kushtests.txt");
 	reset();
-	//readInput("C:\\Users\\viraj\\Documents\\College\\Freshman\\Spring 2019\\EE 312\\EE312\\Projects\\Project4 - CRM\\Project4_starter_files\\test4.txt");
-	//reset();
-	//readInput("C:\\Users\\viraj\\Documents\\College\\Freshman\\Spring 2019\\EE 312\\EE312\\Projects\\Project4 - CRM\\Project4_starter_files\\test3.txt");
-	//reset();
-*/
+	readInput("C:\\Users\\viraj\\Documents\\College\\Freshman\\Spring 2019\\EE 312\\EE312\\Projects\\Project4 - CRM\\Project4_starter_files\\kushtest2.txt");
+	reset();
+	readInput("C:\\Users\\viraj\\Documents\\College\\Freshman\\Spring 2019\\EE 312\\EE312\\Projects\\Project4 - CRM\\Project4_starter_files\\kushtest3.txt");
+	reset(); */
+
+    readInput("test4.txt");
+    reset();
     readInput("test5.txt");
     reset();
-   /* readInput("test2.txt");
+    readInput("kushtests.txt");
     reset();
-    readInput("test3.txt");
+    readInput("kushtest2.txt");
     reset();
-*/
+    readInput("kushtest3.txt");
+    reset();
+
 	//all the test are done, time to clean up, let's deallocate our "constant strings"
 	StringDestroy(&inventory);
 	StringDestroy(&purchase);

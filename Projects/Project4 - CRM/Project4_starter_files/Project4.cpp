@@ -17,7 +17,6 @@ Customer Inventory;
 String diapers;
 String bottles;
 String rattles;
-//String name;
 int reset_;
 
 /* you'll probably need several more global variables */
@@ -30,7 +29,7 @@ void reset(void) {
 	Inventory.diapers =0;
 	Inventory.bottles =0;
 	Inventory.rattles =0;
-	for(int i=0;i<=num_customers;i++) {
+	for(int i=0;i<num_customers;i++) {
 	    StringDestroy(&(customers[i].name));
 	    customers[i].rattles =0;
 	    customers[i].bottles =0;
@@ -154,7 +153,7 @@ void processPurchase() {
     }
 
     if (index == -1 && check == 0) {
-        customers[num_customers].diapers =0;
+        customers[num_customers].diapers=0;
         customers[num_customers].rattles=0;
         customers[num_customers].bottles=0;
         index = num_customers;
