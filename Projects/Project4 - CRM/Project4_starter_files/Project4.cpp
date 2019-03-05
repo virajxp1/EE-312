@@ -148,7 +148,7 @@ void processPurchase() {
     readNum(&quantity);
 
     index = isNewCustomer(name);
-    if(quantity<=0) {
+    if(quantity<=0 || num_customers == 1000) {
         check = -1;
     }
 

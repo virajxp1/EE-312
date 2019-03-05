@@ -103,7 +103,7 @@ void testStage4(void) {
    //printf("crashing with utstrrealloc\n\n\n"); utstrrealloc(utstr1, 40);
 }
 
-void testStage5(void) {
+void testStage5_(void) {
 
     UTString* s = utstrdup("");
 
@@ -213,11 +213,78 @@ void testStage5(void) {
     utstrfree(n);
 }
 
+void testStage5(void) {
+    printf("Starting stage 5 tests:\n");
+    char p[1] = "";
+    UTString* nullTest = utstrdup(p); //check if you can make a null UTString
+    printf("String: %s| Length: %d| Capacity: %d\n", nullTest->string, nullTest->length, nullTest->capacity);
+    //String: | Length: 0| Capacity: 0
+
+    utstrrealloc(nullTest, 5);
+    utstrcat(nullTest, "meli");
+    utstrcat(nullTest, ""); //check if you can concatenate a null string
+    printf("String: %s| Length: %d| Capacity: %d\n", nullTest->string, nullTest->length, nullTest->capacity);
+    //String: meli| Length: 4| Capacity: 5
+
+    UTString* noRealloc = utstrrealloc(nullTest, 0); //check if it does nothing when new_capacity <= old_capacity
+    printf("String: %s| Length: %d| Capacity: %d\n", noRealloc->string, noRealloc->length, noRealloc->capacity);
+    //String: meli| Length: 4| Capacity: 5
+
+    utstrcpy(nullTest, ""); //check if you can copy a null string
+    printf("String: %s| Length: %d| Capacity: %d\n", nullTest->string, nullTest->length, nullTest->capacity);
+    //String: | Length: 0| Capacity: 5
+
+    nullTest = utstrdup(p); //simple check that utrstrlen() function written correctly
+    printf("String Length From Function: %d\n", utstrlen(nullTest)); //String Length From Function: 0
+
+    utstrfree(nullTest); //free a null UTString
+    utstrfree(noRealloc);
+}
+
+//copy tests
+void testStage6(void) {
+    printf("Starting stage 6 tests:\n");
+    char p[50] = "This will be replaced with other tests";
+    UTString* copyTest = utstrdup(p);
+    printf("String: %s| Length: %d| Capacity: %d\n", copyTest->string, copyTest->length, copyTest->capacity);
+    //String: This will be replaced with other tests| Length: 38| Capacity: 38
+
+    char smallTest[50] = "I am smaller";
+    utstrcpy(copyTest, smallTest);
+    printf("String: %s| Length: %d| Capacity: %d\n", copyTest->string, copyTest->length, copyTest->capacity);
+    //String: I am smaller| Length: 12| Capacity: 38
+
+    char largeTest[100] = "I am bigger and will be cut off if you did the copy right :P";
+    utstrcpy(copyTest, largeTest);
+    printf("String: %s| Length: %d| Capacity: %d\n", copyTest->string, copyTest->length, copyTest->capacity);
+    //String: I am bigger and will be cut off if you| Length: 38| Capacity: 38
+
+    utstrrealloc(copyTest, BIG);
+    char lorem[BIG];
+    for (uint32_t k = 0; k < BIG; k += 1) {
+        lorem[k] = '*';
+    }
+    //Copy something really long
+    utstrcpy(copyTest, lorem);
+    printf("String: %s| Length: %d| Capacity: %d\nThis also shouldn't take a long time.\n", "Replace this w/ copyTest->string for * vomit", copyTest->length, copyTest->capacity);
+    //String: A lot of *| Length: 1000000| Capacity: 1000000
+
+    if (copyTest->string[BIG-1] != '*') {
+        printf("stage6 fails for not copying all the characters\n");
+    } else if (strlen(copyTest->string) != BIG) {
+        printf("Hmmm, stage6 has something wrong\n");
+    } else {
+        printf("grats, stage 6 passed (unless it took a long time to print this message)\n");
+    }
+    utstrfree(copyTest);
+}
+
 int main(void) {
-	testStage1();
-	testStage2();
-	testStage3();
+	//testStage1();
+	//testStage2();
+	//testStage3();
 	//testStage4();
-	//testStage5();
+	testStage5_();
+	testStage6();
 	return 0;
 }
