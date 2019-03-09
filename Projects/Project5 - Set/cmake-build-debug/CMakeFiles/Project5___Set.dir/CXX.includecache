@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project5 - Set/Set.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project5 - Set/main.cpp
+stdio.h
+-
+stdint.h
+-
+stdlib.h
+-
+assert.h
+-
+time.h
+-
+unistd.h
+-
+chrono
+-
+Set.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project5 - Set/Set.h
+
