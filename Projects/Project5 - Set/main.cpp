@@ -2,8 +2,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <time.h>
-#include<unistd.h>
 #include <chrono>
 #include "Set.h"
 
@@ -20,24 +18,22 @@ void algebraicTests(void);
 void testTime(void);
 
 int main (void) {
-	//visualTests(); //insert and contains
-	//equalityTests(); //set equality
-	//specialCaseTests(); //universal and null
-	//relationalTests(); //subset and equall
-	algebraicTests(); //union intersection subtract
-	//testTime();
-	//printf("The tests are over\n");
+	visualTests();
+	equalityTests();
+	specialCaseTests();
+	relationalTests();
+	algebraicTests();
+	testTime();
+	printf("The tests are over\n"); 
 }
 
 void randomSet(Set* s) {
 	Set t;
-	//srand(time(0));
-	//sleep(1);
 	int n = rand() % maximum_set_size + 1;
 	int i;
 	
 	createEmptySet(&t);
-	for (i = 0; i <3; i += 1) {
+	for (i = 0; i < n; i += 1) {
 		insertSet(&t, rand() % maximum_set_size);
 	}
 	assignSet(s, &t); 
@@ -57,7 +53,7 @@ void visualTests() {
 	createEmptySet(&s);
 	showOutput("The set constructed with the default constructor: ", &s);
 
-	for (i = 0; i < maximum_set_size; i += 1) {
+	for (i = 0; i < 10; i += 1) {
 	  insertSet(&s, i);
 	}
 	showOutput("The set should be {0, ..., 9}:  ", &s);
@@ -87,7 +83,6 @@ void equalityTests(void) {
 	  
 	  createEmptySet(&s);
 	  randomSet(&s);
-	  showOutput("\n",&s);
 	  createCopySet(&t, &s);
 	  assert(isEqualToSet(&t, &s));
 	  assert(isEqualToSet(&s, &t));
@@ -190,11 +185,6 @@ void relationalTests() {
 	for (i = 0; i < number_of_tests; i += 1) {
 		randomSet(&s);
 		assignSet(&t, &s);
-        int a;
-		for(int i = 0;i<s.len;i++)
-        {
-		    a = s.elements[i];
-        }
 		assert(isSubsetOf(&s, &t));
 		assert(isSubsetOf(&t, &s));
 		assert(isEqualToSet(&s, &t));
@@ -230,47 +220,36 @@ void algebraicTests(void) {
 	createEmptySet(&v);
 	createEmptySet(&w);
 
-	for (i = 0; i < 2; i += 1) {
+	for (i = 0; i < number_of_tests; i += 1) {
 		randomSet(&u);
 		randomSet(&v);
 		randomSet(&w);
-
-
-
-	/*	 u + v == v + u
+	  
+		/* u + v == v + u */
 		assignSet(&s, &u);
 		unionInSet(&s, &v);
 		assignSet(&t, &v);
 		unionInSet(&t, &u);
-		showOutput("\n", &s);
-		showOutput("\n", &t);
-		assert(isEqualToSet(&s, &t)); */
-
-		/* u + (v + w) == (u + v) + w */
-		// set u , v , w
-		/* assignSet(&t, &v);
+		assert(isEqualToSet(&s, &t));
+			
+		/* u + (v + w) == (u + v) + w */	  
+		assignSet(&t, &v);
 		unionInSet(&t, &w);
 		assignSet(&s, &u);
 		unionInSet(&s, &t);
-		//showOutput("\n",&s);
 		assignSet(&t, &u);
 		unionInSet(&t, &v);
 		unionInSet(&t, &w);
-		showOutput("\n", &s);
-		showOutput("\n", &t);
-		assert(isEqualToSet(&s, &t)); */
+		assert(isEqualToSet(&s, &t));
 
-
-		/* u * v == v * u*/
-		/*assignSet(&s, &u);
+		/* u * v == v * u */
+		assignSet(&s, &u);
 		intersectFromSet(&s, &v);
 		assignSet(&t, &v);
 		intersectFromSet(&t, &u);
-		showOutput("\n",&s);
-        showOutput("\n",&t);
-		assert(isEqualToSet(&s, &t)); */
+		assert(isEqualToSet(&s, &t));
 
-		/* u * (v * w) == (u * v) * w */
+		/* u * (v * w) == (u * v) * w */	  
 		assignSet(&t, &v);
 		intersectFromSet(&t, &w);
 		assignSet(&s, &u);
@@ -278,11 +257,9 @@ void algebraicTests(void) {
 		assignSet(&t, &u);
 		intersectFromSet(&t, &v);
 		intersectFromSet(&t, &w);
-        showOutput("\n",&s);
-        showOutput("\n",&t);
 		assert(isEqualToSet(&s, &t));
 
-		/*u - v == u - (u * v)
+		/* u - v == u - (u * v) */
 		assignSet(&s, &u);
 		intersectFromSet(&s, &v);
 		assignSet(&t, &u);
@@ -291,13 +268,12 @@ void algebraicTests(void) {
 		subtractFromSet(&s, &v);
 		assert(isEqualToSet(&s, &t));
 
-		 additional tests, not implemented
+		/* additional tests, not implemented 
 	  assert(w * (u - v) == w * u - w * v);
 	  assert(u * (v + w) == (u * v) + (u * w));
 	  assert(universal - (u * v) == (universal - u) + (universal - v));
 	  assert(universal - (u + v) == (universal - u) * (universal - v)); 
 	  */
-
 	}
 	printf("The algebraic tests have been passed\n"); 
 	destroySet(&empty);

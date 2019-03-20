@@ -1,11 +1,10 @@
-/*
- * Set ADT
- * Project5.c 
- *
- * My Name
- * My Section Time
- * Spring 2017
- *
+
+/* Set <Project5.cpp>
+ * EE 312 Project 5 submission by
+ * Viraj Parikh
+ * VHP286
+ * Slip days used: <0>
+ * Spring 2019
  */
 
 #include <stdio.h>
@@ -30,14 +29,6 @@
  * the amount of storage available in the elements[] array is equal to length
  */
 
-
-bool linearSearch(const Set* self, int key) {
-	for(int i = 0;i<self->len;i++) {
-		if(self->elements[i] == key)
-			return true;
-	}
-	return false;
-}
 
 /* done for you already */
 void destroySet(Set* self) {
@@ -85,7 +76,6 @@ void displaySet(const Set* self) {
 	else {
 		for (k = 0; k < self->len; k += 1) {
 			if (k < self->len - 1) {
-				int x = self->elements[k];
 				printf("%d,", self->elements[k]);
 			} else {
 				printf("%d}", self->elements[k]);
@@ -99,32 +89,14 @@ bool isEmptySet(const Set* self) {
     return self->len == 0;
 }
 
-
-//----------------------------------------------
-/*
- *
- * is member set done
- * insert done
- * remove done
- * is equall to done
- * is subset of done
- *
- *
- * to do
- *
- * union
- * intersection
- * subtraction
- */
-
 /* return true if x is an element of self */
+// normal binary search
 bool isMemberSet(const Set* self, int x) {
     //log(n) = binary search
     int min = 0;
     int max = (self->len)-1;
     while (min <= max) {
     	int mid = (max + (min)) / 2;
-    	int el = self->elements[mid];
     	if (self->elements[mid] < x)
     		min = mid +1;
     	else if (self->elements[mid] > x)
@@ -147,17 +119,15 @@ void insertSet(Set* self, int x) {
         createSingletonSet(self,x);
     }
 	else if(!isMemberSet(self,x)) {
+		int i;
 		self->len++;
-		self->elements = (int*)realloc(self->elements, sizeof(int)*self->len);
-		self->elements[self->len-1] = 0;
-		int i = self->len-1;
-		for(;(i>=0 && x<self->elements[i]);i--) {
-			self->elements[i+1] = self ->elements[i];
+		self->elements = (int*)realloc(self->elements, sizeof(int)*self->len); //add extra space
+		for(i = self->len-2 ;(i>=0 && x<self->elements[i]);i--) {
+			self->elements[i+1] = self ->elements[i];  // start at back and go until x<element 
 		}
-		self->elements[i] = x;
+		self->elements[i+1] = x; //insert into the element where x no greater than previous element 
 	}
 }
-
 
 /*
  * don't forget: it is OK to try to remove an element
@@ -169,128 +139,171 @@ void insertSet(Set* self, int x) {
  * array on the heap is "too big", that's almost certainly OK, and reallocating a smaller array 
  * is almost definitely NOT worth the trouble
  */
+
 void removeSet(Set* self, int x) {
-    if(!isMemberSet(self,x)) {
+    if(isMemberSet(self,x)) {
         int i =0;
         for(;i<self->len;i++) {
-            if(x>=self->elements[i]) {
-                self->elements[i]=self->elements[i+1];
+            if(x<self->elements[i]) {
+                self->elements[i-1]=self->elements[i]; //shift all elements greater than x by one and replace 
             }
         }
+        self->len--;
     }
-}
 
+}
 
 /* return true if self and other have exactly the same elements */
 bool isEqualToSet(const Set* self, const Set* other) {
-    if (isEmptySet(self) && isEmptySet(other))
-        return true;
     if (self->len == other->len) {
-        int i = 0;
-        int j = 0;
-        // i = bigger set j = smaller set
-        while (j < other->len) {
-            if (other->elements[j] == self->elements[i]) {
-                j=0;
-                i++;
-                if (i == self->len)
-                    return true;
-            }
-            else
-                j++;
+        for(int i =0; i<self->len;i++) {
+            if(self->elements[i] != other->elements[i]) //all elements are equall 
+                return false;
         }
+        return true;
     }
 	return false;
 }
+
 /* return true if every element of self is also an element of other */
-// increment untill u find in small set then increment big set
-//keep self still and if any element of other matches self then increase pointer of both
-// arrays
-//else increase other and set b to 0
-//return true if the array b is completly traveresed
-//return false when the big array runs out
 bool isSubsetOf(const Set* self, const Set* other) {
     if(self->elements == nullptr) {
         return true;
     }
+    /*if(isEqualToSet(self,other))
+    	return true;*/
     int i =0; int j = 0;
     // i = bigger set j = smaller set
-	while(j<other->len) {
-		if(other->elements[j] == self->elements[i]) {
-			j=0;
+	while(i<self->len && j<other->len) {
+		if(self->elements[i] == other->elements[j]) {
 			i++;
-			if(i == self->len)
-				return true;
-		}
-		else {
 			j++;
 		}
+		else if(self->elements[i] < other->elements[j]) {
+			return false; // this signifies that self is not in other so returns false 
+		}
+		else {
+			i++; //self x can only be equall orgreater than x
+		}
 	}
-	return false;
+
+	return (i == self->len);
 }
 
-
-
 /* remove all elements from self that are not also elements of other */
-// loop through both list if they equall one add one and increment both values
+//use fact that its sorted!
 void intersectFromSet(Set* self, const Set* other) {
     int i =0;
     int j =0;
+	int buffer_l = self->len + other->len;
+	int buffer[buffer_l];
+	int k =0;
     Set new_set;
     createEmptySet(&new_set);
-
-   while(i<self->len) {
-       if(other->elements[i] == self->elements[j]) {
-           insertSet(&new_set,other->elements[i]);
-           j=0;
-           i++;
-       }
-       else {
-           j++;
-           if(j==self->len) {
-               j=0;
-               i++;
-           }
-       }
-   }
-   assignSet(self,&new_set);
-
+	while(i<self->len && j<other->len) {
+		if(self->elements[i] == other->elements[j]) { //insert only if the element is in both sets
+			buffer[k] = self->elements[i];
+			k++;
+			i++; //increment both ptrs
+			j++;
+		}
+		else if(self->elements[i] < other->elements[j])  
+			i++;
+		else
+			j++;
+	}
+	buffer_l =k;
+	k=0;
+	new_set.len	= buffer_l;
+	new_set.elements = (int*) (malloc(buffer_l * sizeof(int)));
+	for(k=0;k<new_set.len;k++) {
+		new_set.elements[k] = buffer[k]; //copy over buffer into new set
+	}
+    assignSet(self,&new_set);
+    destroySet(&new_set);
 }
-//loop self . for each el if not in other
 
 /* remove all elements from self that are also elements of other */
+//use fact that its sorted!
 void subtractFromSet(Set* self, const Set* other) {
-	for(int i = 0;i<self->len;i++) {
-		if(linearSearch(other,self->elements[i])) {
-			removeSet(self,self->elements[i]);
+	int i =0;
+	int j =0;
+	int buffer_l = self->len + other->len;
+	int buffer[buffer_l];
+	int k =0;
+	Set new_set;
+	createEmptySet(&new_set);
+	while(i<self->len && j<other->len) {
+		if(self->elements[i] == other->elements[j]) {
+			i++;
+			j++;
 		}
+		else if(self->elements[i] < other->elements[j]) {
+			buffer[k] = self->elements[i]; //insert if not in other set 
+			k++;
+			i++;
+		}
+		else
+			j++;
 	}
-	//loop for each el in self if in other remove
+	while(i<self->len) {
+		buffer[k] = self->elements[i];
+		k++;
+		i++;
+	}
+	buffer_l =k;
+	k=0;
+	new_set.len	= buffer_l;
+	new_set.elements = (int*) (malloc(buffer_l * sizeof(int)));
+
+	for(k=0;k<new_set.len;k++) {
+		new_set.elements[k] = buffer[k]; //copy over remaining elements of self
+	}
+    assignSet(self,&new_set);
+    destroySet(&new_set);
 }
 
 /* add all elements of other to self (obviously, without creating duplicate elements) */
-
-
-
+//use fact that its sorted!
+//elemenets of both go into array just no duplicates!
 void unionInSet(Set* self, const Set* other) {
 	int i =0;
 	int j =0;
-
-	while(i<other->len) {
-		if(other->elements[i] != self->elements[j]) {
+	int buffer_l = self->len + other->len;
+	int k =0;
+	Set new_set;
+	createEmptySet(&new_set);
+	new_set.elements = (int*) malloc(buffer_l * sizeof(int));
+	while(i<self->len && j<other->len) {
+		if(self->elements[i] == other->elements[j]) {
+			new_set.elements[k] = self->elements[i];
+			k++;
+			i++;
 			j++;
-			if(j == self->len) {
-				j = 0;
-				insertSet(self,other->elements[i]);
-				i++;
-			}
+		}
+		else if(self->elements[i] < other->elements[j]) {
+			new_set.elements[k] = self->elements[i];
+			k++;
+			i++;
 		}
 		else {
-            j = 0;
-            i++;
-        }
-
+			new_set.elements[k] = other->elements[j];
+			k++;
+			j++;
+		}
 	}
+	while(j<other->len) {
+		new_set.elements[k] = other->elements[j];
+		k++;
+		j++;
+	}
+	while(i<self->len) {
+		new_set.elements[k] = self->elements[i];
+		k++;
+		i++;
+	}
+
+	new_set.len = k;
+	assignSet(self,&new_set);
+	destroySet(&new_set);
 }
-
-
