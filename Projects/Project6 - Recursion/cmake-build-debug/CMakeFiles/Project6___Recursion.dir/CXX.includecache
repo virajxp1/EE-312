@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project6 - Recursion/MazeParams.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project6 - Recursion/Recursion.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project6 - Recursion/main.cpp
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+math.h
+-
+MazeParams.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project6 - Recursion/MazeParams.h
+Recursion.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project6 - Recursion/Recursion.h
+

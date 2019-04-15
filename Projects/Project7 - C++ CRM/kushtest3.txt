@@ -1,0 +1,28 @@
+Inventory Diapers 100
+Purchase Kush Diapers -100
+Summarize
+Purchase Kush Rattles -100
+Inventory Rattles -100
+Summarize
+
+
+
+Quit
+/** kushtest2 Results should be: **/
+
+There are 0 Bottles, 100 Diapers and 0 Rattles in inventory
+we have had a total of 0 different customers
+no one has purchased any Bottles
+no one has purchased any Diapers
+no one has purchased any Rattles
+There are 0 Bottles, 100 Diapers and 0 Rattles in inventory
+we have had a total of 0 different customers
+no one has purchased any Bottles
+no one has purchased any Diapers
+no one has purchased any Rattles
+
+/********* end of kushtest2 *************/
+
+
+
+

@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/Customer.h
+String.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/String.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/CustomerDB.h
+String.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/String.h
+Customer.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/Customer.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/String.h
+stdlib.h
+-
+stdint.h
+-
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/main.cpp
+stdio.h
+-
+string
+-
+stdio.h
+-
+stdlib.h
+-
+String.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/String.h
+CustomerDB.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project7 - C++ CRM/CustomerDB.h
+
