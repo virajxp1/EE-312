@@ -10,7 +10,7 @@
    LinkedList& operator=(LinkedList& other);
 
    // operator overload
-   LinkedList& operator+(double data);
+   LinkedList& operator+(double data); done
   
  */
 
@@ -18,6 +18,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include "linkedlist.hpp"
+
+#define nullptr NULL
 
 using namespace std;
 
@@ -51,9 +53,35 @@ LinkedList::LinkedList(double* data_ptr, int num) {
    - you may use helper functions
    - you may not use global or static variables
  */
-LinkedList::~LinkedList() {
-
+void LinkedList::destroy(Node *current) {
+    if(current != nullptr)
+        destroy(current->next);
+    delete current;
 }
+LinkedList::~LinkedList() {
+    destroy(this->root);
+}
+
+void LinkedList::copy(LinkedList &other) {
+    this->length = other.length;
+    this->root = nullptr;
+    copy_nodes(this->root,other.root);
+}
+void LinkedList ::copy_nodes(Node *dest, Node *src) {
+    if(src != nullptr) {
+        Node *nn = new Node();
+        nn->data = src->data;
+        if(root == nullptr){
+            root = nn;
+            copy_nodes(nn,src->next);
+        }
+        else{
+            dest->next = nn;
+            copy_nodes(nn,src->next);
+        }
+    }
+}
+
 
 /* Copy constructor
    - YOUR TASK
@@ -62,14 +90,24 @@ LinkedList::~LinkedList() {
    - you may not use global or static variables
  */
 LinkedList::LinkedList(LinkedList& other) {
-
+    copy(other);
 }
 
 /* Assignment operator
    - YOUR TASK
  */
 LinkedList& LinkedList::operator=(LinkedList& other) {
-
+    if(this == &other) {
+        return *this;
+    }
+    Node* current_t = this->root;
+    Node* prev = nullptr;
+    while(current_t != nullptr) {
+        prev = current_t;
+        current_t = current_t->next;
+        delete prev;
+    }
+    copy(other);
 }
 
 /* Operator overload
@@ -92,7 +130,11 @@ double LinkedList::operator[](int index) {
    - inserts data at beginning of linked list
  */
 LinkedList& LinkedList::operator+(double data) {
-
+    Node* insert = new node;
+    insert->next = this->root;
+    insert->data = data;
+    this->root = insert;
+    this->length++;
 }
 
 /* Prints all elements in linked list
