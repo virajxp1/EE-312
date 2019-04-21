@@ -4,7 +4,7 @@
 #include "Parse.h"
 #include "run.h"
 
-int main(void) {
-    set_input("test1.blip");
+int main() {
+    set_input("../test5.blip");
     run();
 }
