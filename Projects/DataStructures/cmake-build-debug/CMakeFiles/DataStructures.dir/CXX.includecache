@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/DataStructures/Binary_ST.cpp
+Binary_ST.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/DataStructures/Binary_ST.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/DataStructures/Binary_ST.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/DataStructures/main.cpp
+iostream
+-
+Binary_ST.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/DataStructures/Binary_ST.h
+Binary_ST.cpp
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/DataStructures/Binary_ST.cpp
+

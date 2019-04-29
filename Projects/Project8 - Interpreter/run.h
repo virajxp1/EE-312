@@ -4,104 +4,115 @@
 
 #include "Parse.h"
 #include "DataStructure.h"
-#include <cstring>
+#include <string>
 #include <iostream>
 
 using namespace std;
-
 void run(){
-    auto variables = new DataStructure::Binary_ST();
+    auto variables = new Binary_ST();
     while(true){
      read_next_token();
-     if(next_token_type == END)
+     if(next_token_type == END){
          break;
+     }
      else if(next_token_type == NAME){
-        const char* cmd = next_token();
-        if(strcmp(cmd,"text")==0){ //if the command is text output that text to screen
+         auto c = next_token();
+         string cmd(c);
+        if(cmd =="text"){ //if the command is text output that text to screen
             read_next_token();
-            const char* text = next_token();
-            cout<<text;
+            string text = next_token();
+            cout<<text<<flush;
         }
-        else if(strcmp(cmd,"output")==0){ //if command is output
+        else if(cmd == "output"){ //if command is output
             read_next_token();
             if(next_token_type == NUMBER) //if the output is a straight number send to screen
-                cout << token_number_value;
+                cout << token_number_value<<flush;
             else if(next_token_type == NAME){ //if output is a variable
                 auto name = next_token();
-                cout<<variables->val(name);
+                string n(name);
+                cout<<variables->val(name)<<flush;
             }
             else if(next_token_type == SYMBOL){ //infix expression
                 vector<string> expr; //vector of expression tokens
-                expr.push_back(cmd);
+                expr.push_back(next_token());
                 do{
                     read_next_token();
                     expr.push_back(next_token());
                 }
-                while(strcmp(peek_next_token(),"text") != 0 && strcmp(peek_next_token(),"output") != 0 && strcmp(peek_next_token(),"var") != 0 && strcmp(peek_next_token(),"set") != 0 &&strcmp(peek_next_token(),"//") != 0 &&strcmp(peek_next_token(),"") );
-                auto expression = new DataStructure::Expression_Tree(expr); //creates tree
-                cout<<expression->Evalulate(*variables); //outputs the evaulation of the tree
+                while((string)peek_next_token() != "text"  && (string)peek_next_token() !="output" && (string)peek_next_token() != "var" && (string)peek_next_token() !="set"&& (string)peek_next_token() !="//"&&(string)peek_next_token() !="" );
+                auto expression = new Expression_Tree(expr); //creates tree
+                cout<<expression->Evalulate(*variables)<<flush; //outputs the evaulation of the tree
+                delete expression;
             }
         }
-        else if(strcmp(cmd,"var")==0){ //if command is var -> create new variable
+        else if(cmd=="var"){ //if command is var -> create new variable
             read_next_token();
             auto name = next_token();
-            if(variables->find(name) != nullptr){cout<<"variable "<<name<<" incorrectly re-initialized\n";}//ERROR code ->variable already exist
-            else{variables->insert(name,0);}// initilize variable to 0
-            auto node = variables->find(name); //pointer to the new node
+            string n(name);
+            if(variables->find(n) != nullptr){
+                cout<<"\nvariable "<<name<<" incorrectly re-initialized"<<endl;
+            }
+            //ERROR code ->variable already exist
+            else{variables->insert(n,0);}// initilize variable to 0
+            auto node = variables->find(n); //pointer to the new node
             read_next_token(); //read next token to get number
             if(next_token_type == NUMBER){ //if variable is assigned to a number
                 variables->change(node,token_number_value); //change the value of the
             }
             else if(next_token_type == NAME){
-                variables->change(node,variables->val(name));
+                variables->change(node,variables->val(n));
             }
             else if(next_token_type == SYMBOL){ // if variable is assigned to a expression
                 vector<string> expr; //creates a vector which will hold the expression
-                expr.push_back(cmd);
+                expr.push_back(next_token());
                 do{
                     read_next_token();
                     expr.push_back(next_token());
                 }
-                while(strcmp(peek_next_token(),"text") != 0 && strcmp(peek_next_token(),"output") != 0 && strcmp(peek_next_token(),"var") != 0 && strcmp(peek_next_token(),"set") != 0 &&strcmp(peek_next_token(),"//") != 0 &&strcmp(peek_next_token(),"") );
-                auto expression = new DataStructure::Expression_Tree(expr); //creates expression tree which holds the expression
+                while((string)peek_next_token() != "text"  && (string)peek_next_token() !="output" && (string)peek_next_token() != "var" && (string)peek_next_token() !="set"&& (string)peek_next_token() !="//"&&(string)peek_next_token() !="" );
+                auto expression = new Expression_Tree(expr); //creates expression tree which holds the expression
                 variables->change(node,expression->Evalulate(*variables)); //sets variable to the value of the expression
+                delete expression;
             }
         }
-        else if(strcmp(cmd,"set")==0){ //if command is set -> change the value of existing variable
+        else if(cmd == "set"){ //if command is set -> change the value of existing variable
             read_next_token();
             auto name = next_token();
-            if(variables->find(name) == nullptr){             //ERROR message -> variable is not in memory
-                cout<<"variable "<<name<<" not declared";
-                variables->insert(name,0);
+            string n(name);
+            if(variables->find(n) == nullptr){             //ERROR message -> variable is not in memory
+                cout<<"\nvariable "<<name<<" not declared"<<endl;
+                variables->insert(n,0);
             }
-            auto node = variables->find(name); //pointer to the new node
+            auto node = variables->find(n); //pointer to the new node
             read_next_token();
             if(next_token_type == NUMBER){ //if to set var to a number
                 variables->change(node,token_number_value);
             }
             else if(next_token_type == NAME){ //if to set var to another var
-                variables->change(node,variables->val(name));
+                variables->change(node,variables->val(n));
             }
             else if(next_token_type == SYMBOL){ //if set to an expression
                 vector<string> expr;
-                expr.push_back(cmd);
+                expr.push_back(next_token());
                 do{
                     read_next_token();
                     expr.push_back(next_token());
                 }
-                while(strcmp(peek_next_token(),"text") != 0 && strcmp(peek_next_token(),"output") != 0 && strcmp(peek_next_token(),"var") != 0 && strcmp(peek_next_token(),"set") != 0 &&strcmp(peek_next_token(),"//") != 0 &&strcmp(peek_next_token(),"") );
-                auto expression = new DataStructure::Expression_Tree(expr);
+                while((string)peek_next_token() != "text"  && (string)peek_next_token() !="output" && (string)peek_next_token() != "var" && (string)peek_next_token() !="set"&& (string)peek_next_token() !="//"&&(string)peek_next_token() !="" );
+                auto expression = new Expression_Tree(expr);
                 variables->change(node,expression->Evalulate(*variables));
+                delete expression;
             }
 
         }
      }
      else if(next_token_type == SYMBOL){ //this will only get here if its a comment
-         const char* cmd = next_token();
-         if(strcmp("//",cmd) ==0)
+         string cmd = next_token();
+         if("//" == cmd)
              skip_line();
      }
     }
+    delete variables;
 }
 
 #endif //PROJECT8___INTERPRETER_RUN_H

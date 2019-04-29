@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/DataStructure.h
+stdlib.h
+-
+string
+-
+Parse.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/Parse.h
+vector
+-
+iostream
+-
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/Parse.h
+stdint.h
+-
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/main.cpp
+Parse.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/Parse.h
+run.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/run.h
+DataStructure.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/DataStructure.h
+string
+-
+iostream
+-
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/run.h
+Parse.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/Parse.h
+DataStructure.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project8 - Interpreter/DataStructure.h
+string
+-
+iostream
+-
+

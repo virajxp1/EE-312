@@ -1,0 +1,53 @@
+text hello // hello boss text help // hello text "not printed\n" // shouldnt be printed
+text \n
+text xxxisthegoat
+text "\n=="
+text 42 output 42 output 1
+output + 1 1 // ok
+  		output + + + 1 1 1 1
+text \n
+var x 1
+var xx 11
+var xxx 111
+var x 1111
+output x // hi
+text \n
+     	output  + + + x xx xxx x
+     	text \n
+set x 12
+// set y 4
+// output y
+text \n
+var y 8
+output y
+text \n
+output x
+text \n
+output + y x
+text \n
+set y ! y
+output y
+text \n
+set y ! y
+output y
+text \n
+set y 4
+set y / y 4
+output y
+text \n
+set y ~ y
+output y // boiii
+text \n
+var y && y 1
+output y
+text \n
+set xx + && 6 12 10
+output xx
+text \n
+var zebra ~		x
+output zebra
+text "hi"
+
+
+
+

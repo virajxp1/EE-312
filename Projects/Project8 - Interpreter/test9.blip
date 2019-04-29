@@ -1,0 +1,6 @@
+text "welcome to my world\n "
+var x 10
+var x 5
+output x
+
+// should be 5 with error message

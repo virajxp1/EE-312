@@ -1,0 +1,52 @@
+text yo
+var x 1
+output x
+var xx 11
+var xxx 111
+set x 12
+var y 8
+var zebra ~		x
+var a 1
+var b + 1 1
+var af + a b
+var dope * + af 1 af
+var boi && 1 1
+var less <= 1 0
+var ge >= 0 1
+var gellee ! || ge less
+output gellee
+text \n
+var notme  ~ ! gellee gellee
+output notme
+text \n output x
+text \n
+output xx
+text \n
+output xxx
+text \n
+output y
+text \n
+output zebra
+text \n
+output a
+text \n
+output b
+text \n
+output af
+text \n
+output dope
+text \n
+output boi
+text \n
+output less
+text \n
+output ge
+text \n
+output gellee
+text \n
+output notme
+text \n
+
+
+
+

@@ -3,8 +3,12 @@
 //
 #include "Parse.h"
 #include "run.h"
+#include "DataStructure.h"
+#include <string>
+#include <iostream>
+
 
 int main() {
-    set_input("../test5.blip");
+    set_input("test_grader.blip");
     run();
 }

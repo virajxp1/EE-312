@@ -1,0 +1,21 @@
+text "begin kushtest2\n"
+// test com
+var x 0
+var x 1
+var x 2
+set x 3
+output x
+text " should be 3, with 2 error messages before this from var"
+
+// test comment
+// to psych e you out
+
+set y 1
+var y 4
+output y
+text " should be 4 with 2 error message from set and var in that order\n"
+
+set x + x y
+output x
+text " should be 7"
+

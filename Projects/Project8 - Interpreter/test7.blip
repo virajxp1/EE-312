@@ -1,0 +1,14 @@
+text "Hello, and welcome to Blip" // first line var x 0
+
+var x 0
+
+text "\n"
+
+// set x to (5 + 3) * (x – 1) --> -8
+set x
+    *
+    + 5 3
+        - x 1
+
+output x
+text " should be -8"
