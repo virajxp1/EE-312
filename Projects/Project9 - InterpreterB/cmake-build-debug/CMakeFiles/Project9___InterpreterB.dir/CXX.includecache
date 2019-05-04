@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project9 - InterpreterB/DataStructure.h
+stdlib.h
+-
+string
+-
+Parse.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project9 - InterpreterB/Parse.h
+vector
+-
+iostream
+-
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project9 - InterpreterB/Expressions.cpp
+Parse.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project9 - InterpreterB/Parse.h
+vector
+-
+DataStructure.h
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project9 - InterpreterB/DataStructure.h
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project9 - InterpreterB/Parse.h
+stdint.h
+-
+
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project9 - InterpreterB/run_new.cpp
+vector
+-
+Expressions.cpp
+C:/Users/viraj/Documents/College/Freshman/Spring 2019/EE 312/EE-312/Projects/Project9 - InterpreterB/Expressions.cpp
+
