@@ -176,15 +176,15 @@ Expression_Tree:: node* Expression_Tree::parse(vector<string> &expr) {
         return nullptr;
     string token = expr[0];
     expr.erase(expr.begin());
-    if(token == "+" || token == "-" || token == "*" || token == "/" || token == "%" || token =="&&" || token == "||"
+    if(token == "~" || token == "!"){
+        node* left = parse(expr);
+        node* right = nullptr;
+        return new node(token,left,right);
+    }
+    else if(token == "+" || token == "-" || token == "*" || token == "/" || token == "%" || token =="&&" || token == "||"
         || token =="<" || token ==">" || token == "==" || token == "!=" || token == "<=" || token == ">="){
         node* left = parse(expr);
         node* right = parse(expr);
-        return new node(token,left,right);
-    }
-    else if(token == "~" || token == "!"){
-        node* left = parse(expr);
-        node* right = nullptr;
         return new node(token,left,right);
     }
     else{
@@ -258,7 +258,6 @@ int Expression_Tree::eval(node* n,Binary_ST &var) {
                 return 1;
             }
             return 0;
-
     }
     return 0;
     }

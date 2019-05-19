@@ -1,34 +1,10 @@
-text "output 42 -- "
-output 42 // prints 42
-text \n
-
-text "output + 42 42 -- "
-output + 42 42 // prints 84
-text \n
-
-text "output + 42 + 10 5 -- "
-output + 42 + 10 5 // prints 57
-text \n
-
-text "output * 5 + 2 2 -- "
-output * 5 + 2 2
-text \n
-
-text "output + * 5 3 + 4 4 -- "
-output + * 5 3 + 4 4
-text \n
-
-text "output - 0 4 -- "
-output - 0 4
-text \n
-
-text "Hello World\n"
 var x 10
-var y x
-var z + * 5 3 + 4 4
-output x
-text \n
-output y
-text \n
-output z
-
+var z 0
+	do < z 4
+		set x 10
+		set z + z 1
+		do > x 8
+			text "yaaaa\n"
+			set x - x 1
+		od
+	od

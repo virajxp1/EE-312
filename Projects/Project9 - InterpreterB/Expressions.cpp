@@ -15,7 +15,9 @@ public:
     int num;
     string text;
     string variable;
+    string set;
     vector<string> expr;
+    vector<string> condition;
     bool error;
 
 
@@ -23,6 +25,7 @@ public:
         cmd = "";
         text = "";
         variable = "";
+        set = "";
         num = INT32_MIN;
         error = false;
     }
@@ -50,7 +53,7 @@ public:
                     read_next_token();
                     expr.push_back(next_token());
                 }
-                while((string)peek_next_token() != "text"  && (string)peek_next_token() !="output" && (string)peek_next_token() != "var" && (string)peek_next_token() !="set"&& (string)peek_next_token() !="//"&&(string)peek_next_token() !="" );
+                while((string)peek_next_token() != "text"  && (string)peek_next_token() !="output" && (string)peek_next_token() != "var" && (string)peek_next_token() !="set"&& (string)peek_next_token() !="//"&&(string)peek_next_token() !=""  && (string)peek_next_token() != "if" && (string)peek_next_token() != "fi" && (string)peek_next_token() != "else" && (string)peek_next_token() != "do" && (string)peek_next_token() != "od");
             }
         }
         else if(cmd == "var"){
@@ -60,23 +63,15 @@ public:
                 error = true;
             else
                 symbols.insert(variable,0);
-            auto node = symbols.find(variable);
-            read_next_token();
-            if(next_token_type == NUMBER)
-                symbols.change(node,token_number_value);
-            else if(next_token_type == NAME){
-                symbols.change(node,symbols.val(next_token()));
-            }
-            else if(next_token_type == SYMBOL){
+            while ((string) peek_next_token() != "text" && (string) peek_next_token() != "output" &&
+                   (string) peek_next_token() != "var" && (string) peek_next_token() != "set" &&
+                   (string) peek_next_token() != "//" && (string) peek_next_token() != "" &&
+                   (string) peek_next_token() != "if" && (string) peek_next_token() != "fi" &&
+                   (string) peek_next_token() != "else" && (string) peek_next_token() != "do" &&
+                   (string) peek_next_token() != "od") {
+
                 expr.push_back(next_token());
-                do{
-                    read_next_token();
-                    expr.push_back(next_token());
-                }
-                while((string)peek_next_token() != "text"  && (string)peek_next_token() !="output" && (string)peek_next_token() != "var" && (string)peek_next_token() !="set"&& (string)peek_next_token() !="//"&&(string)peek_next_token() !="" );
-                auto expression = new Expression_Tree(expr);
-                symbols.change(node,expression->Evalulate(symbols));
-                delete expression;
+                read_next_token();
             }
         }
         else if(cmd == "set") {
@@ -86,25 +81,34 @@ public:
                 error = true;
                 symbols.insert(variable,0);
             }
-            auto node = symbols.find(variable);
-            read_next_token();
-            if(next_token_type == NUMBER)
-                symbols.change(node,token_number_value);
-            else if(next_token_type == NAME){
-                symbols.change(node,symbols.val(next_token()));
-            }
-            else if(next_token_type == SYMBOL){
+            while ((string) peek_next_token() != "text" && (string) peek_next_token() != "output" &&
+                   (string) peek_next_token() != "var" && (string) peek_next_token() != "set" &&
+                   (string) peek_next_token() != "//" && (string) peek_next_token() != "" &&
+                   (string) peek_next_token() != "if" && (string) peek_next_token() != "fi" &&
+                   (string) peek_next_token() != "else" && (string) peek_next_token() != "do" &&
+                   (string) peek_next_token() != "od") {
+
                 expr.push_back(next_token());
-                do{
-                    read_next_token();
-                    expr.push_back(next_token());
-                }
-                while((string)peek_next_token() != "text"  && (string)peek_next_token() !="output" && (string)peek_next_token() != "var" && (string)peek_next_token() !="set"&& (string)peek_next_token() !="//"&&(string)peek_next_token() !="" );
-                auto expression = new Expression_Tree(expr);
-                symbols.change(node,expression->Evalulate(symbols));
-                delete expression;
+                read_next_token();
             }
 
+        }
+        else if(cmd == "if"){
+            while((string)peek_next_token() != "text"  && (string)peek_next_token() !="output" && (string)peek_next_token() != "var" && (string)peek_next_token() !="set"&& (string)peek_next_token() !="//"&&(string)peek_next_token() !=""  && (string)peek_next_token() != "if" && (string)peek_next_token() != "fi" && (string)peek_next_token() != "else" && (string)peek_next_token() != "do" && (string)peek_next_token() != "od"){
+                condition.push_back(next_token());
+                read_next_token();
+            }
+        }
+        else if(cmd == "do") {
+            while ((string) peek_next_token() != "text" && (string) peek_next_token() != "output" &&
+                   (string) peek_next_token() != "var" && (string) peek_next_token() != "set" &&
+                   (string) peek_next_token() != "//" && (string) peek_next_token() != "" &&
+                   (string) peek_next_token() != "if" && (string) peek_next_token() != "fi" &&
+                   (string) peek_next_token() != "else" && (string) peek_next_token() != "do" &&
+                    (string) peek_next_token() != "od") {
+                condition.push_back(next_token());
+                read_next_token();
+            }
         }
         return *this;
     }

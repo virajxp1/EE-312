@@ -11,13 +11,13 @@ else
 	text "Hurray! If evaluates the zero as false\n"
 fi 
 
-if ~ + x 1 
+if ! + x 1
 else 
 	text "If you could parse this, it probably worked...\n"
 fi 
 
 
-if ~ + x 1
+if ! + x 1
 	text "this shouldn't be printed out!\n"
 fi 
 

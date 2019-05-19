@@ -9,4 +9,6 @@
 #include "Expressions.cpp"
 
 #endif //PROJECT9___INTERPRETERB_RUN_H
-void run(vector<Expressions>& input,Binary_ST* symbols);
+void run();
+void exec(Expressions input[],Binary_ST* symbols);
+void Parse(vector<Expressions>& parse, Binary_ST& symbols);
